@@ -1,1 +1,21 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+/* Remove the space between pseudo-elements and colons */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1e293b; /* Tailwind's slate-800 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #475569; /* Tailwind's slate-600 */
+  border-radius: 9999px;
+}
+
+/* Optional: For Firefox support */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #475569 #1e293b;
+}
