@@ -1,25 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { IoIosArrowBack, IoIosArrowForward, IoMdAdd } from "react-icons/io";
 import { IoCheckmarkSharp, IoClose, IoCloseSharp } from "react-icons/io5";
 import { RiFocus3Line } from "react-icons/ri";
 
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
 
 const timeSlots = [
   {
@@ -89,151 +74,196 @@ const timeSlots = [
 
 const weekData = [
   {
-    date: new Date('2025-05-12'),
+    date: new Date("2025-05-12"),
     timeSlots: [
       {
-        time: { start: '08:00 AM', end: '09:00 AM' },
-        status: 'available',
-        note: '',
+        time: { start: "08:00 AM", end: "09:00 AM" },
+        status: "Done",
+        note: "",
       },
       {
-        time: { start: '09:00 AM', end: '10:00 AM' },
-        status: 'Done',
-        note: 'Team sync',
+        time: { start: "09:00 AM", end: "10:00 AM" },
+        status: "Done",
+        note: "Team sync",
       },
       {
-        time: { start: '10:00 AM', end: '11:00 AM' },
-        status: 'Undone',
-        note: 'Call client',
+        time: { start: "10:00 AM", end: "11:00 AM" },
+        status: "Undone",
+        note: "Call client",
       },
     ],
   },
   {
-    date: new Date('2025-05-13'),
+    date: new Date("2025-05-13"),
     timeSlots: [
       {
-        time: { start: '08:00 AM', end: '09:00 AM' },
-        status: 'Done',
-        note: 'Morning jog',
+        time: { start: "08:00 AM", end: "09:00 AM" },
+        status: "Done",
+        note: "Morning jog",
       },
       {
-        time: { start: '09:00 AM', end: '10:00 AM' },
-        status: 'Undone',
-        note: '',
+        time: { start: "09:00 AM", end: "10:00 AM" },
+        status: "Undone",
+        note: "",
       },
       {
-        time: { start: '10:00 AM', end: '11:00 AM' },
-        status: 'available',
-        note: '',
+        time: { start: "10:00 AM", end: "11:00 AM" },
+        status: "available",
+        note: "",
       },
     ],
   },
   {
-    date: new Date('2025-05-14'),
+    date: new Date("2025-05-14"),
     timeSlots: [
       {
-        time: { start: '08:00 AM', end: '09:00 AM' },
-        status: 'available',
-        note: '',
+        time: { start: "08:00 AM", end: "09:00 AM" },
+        status: "available",
+        note: "",
       },
       {
-        time: { start: '09:00 AM', end: '10:00 AM' },
-        status: 'Done',
-        note: 'Doctor visit',
+        time: { start: "09:00 AM", end: "10:00 AM" },
+        status: "available",
+        note: "Doctor visit",
       },
       {
-        time: { start: '10:00 AM', end: '11:00 AM' },
-        status: 'Undone',
-        note: '',
+        time: { start: "10:00 AM", end: "11:00 AM" },
+        status: "available",
+        note: "",
       },
     ],
   },
   {
-    date: new Date('2025-05-15'),
+    date: new Date("2025-05-15"),
     timeSlots: [
       {
-        time: { start: '08:00 AM', end: '09:00 AM' },
-        status: 'Done',
-        note: 'Yoga session',
+        time: { start: "08:00 AM", end: "09:00 AM" },
+        status: "available",
+        note: "Yoga session",
       },
       {
-        time: { start: '09:00 AM', end: '10:00 AM' },
-        status: 'available',
-        note: '',
+        time: { start: "09:00 AM", end: "10:00 AM" },
+        status: "available",
+        note: "",
       },
       {
-        time: { start: '10:00 AM', end: '11:00 AM' },
-        status: 'Undone',
-        note: 'Call supplier',
+        time: { start: "10:00 AM", end: "11:00 AM" },
+        status: "available",
+        note: "Call supplier",
       },
     ],
   },
   {
-    date: new Date('2025-05-16'),
+    date: new Date("2025-05-16"),
     timeSlots: [
       {
-        time: { start: '08:00 AM', end: '09:00 AM' },
-        status: 'Undone',
-        note: '',
+        time: { start: "08:00 AM", end: "09:00 AM" },
+        status: "available",
+        note: "",
       },
       {
-        time: { start: '09:00 AM', end: '10:00 AM' },
-        status: 'Done',
-        note: 'Daily report',
+        time: { start: "09:00 AM", end: "10:00 AM" },
+        status: "available",
+        note: "Daily report",
       },
       {
-        time: { start: '10:00 AM', end: '11:00 AM' },
-        status: 'available',
-        note: '',
+        time: { start: "10:00 AM", end: "11:00 AM" },
+        status: "available",
+        note: "",
       },
     ],
   },
   {
-    date: new Date('2025-05-17'),
+    date: new Date("2025-05-17"),
     timeSlots: [
       {
-        time: { start: '08:00 AM', end: '09:00 AM' },
-        status: 'available',
-        note: '',
+        time: { start: "08:00 AM", end: "09:00 AM" },
+        status: "available",
+        note: "",
       },
       {
-        time: { start: '09:00 AM', end: '10:00 AM' },
-        status: 'Undone',
-        note: '',
+        time: { start: "09:00 AM", end: "10:00 AM" },
+        status: "available",
+        note: "",
       },
       {
-        time: { start: '10:00 AM', end: '11:00 AM' },
-        status: 'Done',
-        note: 'Meeting with team',
+        time: { start: "10:00 AM", end: "11:00 AM" },
+        status: "available",
+        note: "Meeting with team",
       },
     ],
   },
   {
-    date: new Date('2025-05-18'),
+    date: new Date("2025-05-18"),
     timeSlots: [
       {
-        time: { start: '08:00 AM', end: '09:00 AM' },
-        status: 'Done',
-        note: 'Prepare slides',
+        time: { start: "08:00 AM", end: "09:00 AM" },
+        status: "available",
+        note: "",
       },
       {
-        time: { start: '09:00 AM', end: '10:00 AM' },
-        status: 'available',
-        note: '',
+        time: { start: "09:00 AM", end: "10:00 AM" },
+        status: "available",
+        note: "",
       },
       {
-        time: { start: '10:00 AM', end: '11:00 AM' },
-        status: 'Undone',
-        note: '',
+        time: { start: "10:00 AM", end: "11:00 AM" },
+        status: "available",
+        note: "",
       },
     ],
   },
 ];
 
+// Note Popup Component
+const NotePopup = ({ data }) => {
+  const [message, setMessage] = useState("");
+
+  const handleNoteSave = () => {
+    console.log("Note saved", { ...data, message });
+    setShowNotePopup(false);
+  };
+  const handleNoteCancel = () => {
+    setShowNotePopup(false);
+  };
+  return (
+    <div className="absolute top-0 left-0 w-full h-full bg-slate-800/60 flex items-center justify-center z-30">
+      <div className="bg-white p-4 rounded shadow-lg">
+        <h2 className="text-xl font-bold mb-4">Add Note</h2>
+        <textarea
+          className="w-full h-32 p-2 border border-gray-300 rounded"
+          placeholder="Type your note here..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          rows={4}
+          cols={50}
+        ></textarea>
+        <div className="w-full flex justify-between items-center mt-4">
+          <button
+            onClick={handleNoteCancel}
+            className="mt-4 bg-red-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-red-600"
+          >
+            Cancle
+          </button>
+          <button
+            onClick={handleNoteSave}
+            disabled={!message}
+            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Save Note
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const CalenderDemo = () => {
   const [currentWeekStart, setCurrentWeekStart] = useState(
     getMonday(new Date())
+  );
+  const [currentWeekShow, setCurrentWeekShow] = useState(
+    getWeekDates(currentWeekStart)
   );
   const [showNotePopup, setShowNotePopup] = useState(false);
   const [noteData, setNoteData] = useState({});
@@ -260,31 +290,36 @@ const CalenderDemo = () => {
     return dates;
   }
 
+  // Go to this week
   const handleToday = () => {
     const today = new Date();
     setCurrentWeekStart(getMonday(today));
+    setCurrentWeekShow(getWeekDates(today));
   };
 
+  // Go to previous week
   const handlePrevWeek = () => {
     const newDate = new Date(currentWeekStart);
     newDate.setDate(currentWeekStart.getDate() - 7);
     setCurrentWeekStart(getMonday(newDate));
+    setCurrentWeekShow(getWeekDates(newDate));
   };
 
+  // Go to next week
   const handleNextWeek = () => {
     const newDate = new Date(currentWeekStart);
     newDate.setDate(currentWeekStart.getDate() + 7);
     setCurrentWeekStart(getMonday(newDate));
+    setCurrentWeekShow(getWeekDates(newDate));
   };
 
-  const today = currentDate.getDate();
   const weekDates = getWeekDates(currentWeekStart);
   const monthYear = currentWeekStart.toLocaleString("default", {
     month: "long",
     year: "numeric",
   });
 
-  console.log(today, weekDates);
+  // Get the previous days of the week
   const getPrevDaysOfWeek = () => {
     return weekDates.filter(
       (date) =>
@@ -294,58 +329,11 @@ const CalenderDemo = () => {
   };
 
   const prevDays = getPrevDaysOfWeek();
-  console.log(prevDays);
 
-  // console.log(currentDate.());
 
-  // console.log(currentDate);
-  // console.log(new Date(currentDate.setDate(currentDate.getDate() + 20)));
-  // console.log(currentDate);
-
+  // Done/Undone button click handler
   const handleProgressClick = (data) => {
     console.log("Progress clicked", data);
-  };
-
-  const NotePopup = ({ data }) => {
-    const [message, setMessage] = useState("");
-
-    const handleNoteSave = () => {
-      console.log("Note saved", { ...data, message });
-      setShowNotePopup(false);
-    };
-    const handleNoteCancel = () => {
-      setShowNotePopup(false);
-    };
-    return (
-      <div className="absolute top-0 left-0 w-full h-full bg-slate-800/60 flex items-center justify-center z-30">
-        <div className="bg-white p-4 rounded shadow-lg">
-          <h2 className="text-xl font-bold mb-4">Add Note</h2>
-          <textarea
-            className="w-full h-32 p-2 border border-gray-300 rounded"
-            placeholder="Type your note here..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={4}
-            cols={50}
-          ></textarea>
-          <div className="w-full flex justify-between items-center mt-4">
-            <button
-              onClick={handleNoteCancel}
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-red-600"
-            >
-              Cancle
-            </button>
-            <button
-              onClick={handleNoteSave}
-              disabled={!message}
-              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Save Note
-            </button>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   return (
@@ -365,7 +353,12 @@ const CalenderDemo = () => {
             <button
               onClick={handleToday}
               className={`p-2  rounded-full hover:bg-slate-600 cursor-pointer ${
-                currentWeekStart.getDate() === today
+                weekDates.find(
+                  (date) =>
+                    date.getDate() === currentDate.getDate() &&
+                    date.getMonth() === currentDate.getMonth() &&
+                    date.getFullYear() === currentDate.getFullYear()
+                )
                   ? "bg-slate-700 opacity-60 pointer-events-none select-none"
                   : "bg-slate-500"
               }`}
@@ -384,7 +377,13 @@ const CalenderDemo = () => {
             {/* Next Button */}
             <button
               onClick={handleNextWeek}
-              className="p-2 bg-slate-700 rounded-full hover:bg-slate-600 cursor-pointer"
+              disabled={currentWeekShow.find(
+                (date) =>
+                  date.getDate() === currentDate.getDate() &&
+                  date.getMonth() === currentDate.getMonth() &&
+                  date.getFullYear() === currentDate.getFullYear()
+              )}
+              className="p-2 bg-slate-700 rounded-full hover:bg-slate-600 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <IoIosArrowForward />
             </button>
@@ -423,7 +422,6 @@ const CalenderDemo = () => {
               ))}
             </div>
 
-            {/* Body */}
             <div className="grid grid-cols-8 text-white text-sm border border-slate-700">
               {/* Time Slots Column */}
               <div
@@ -444,68 +442,118 @@ const CalenderDemo = () => {
                 ))}
               </div>
 
+              {/* Body */}
               {weekDates.map((date, j) => (
                 /* Week Days Columns */
                 <div
                   key={j}
                   className={`${
-                  // Highlight today
-                  (date.getMonth() === currentDate.getMonth() &&
+                    // Highlight today
+                    date.getMonth() === currentDate.getMonth() &&
                     date.getDate() === currentDate.getDate() &&
-                    date.getFullYear() === currentDate.getFullYear())
-                    ? "bg-slate-900"
-                    : "bg-slate-800 opacity-60 pointer-events-none select-none"
-                  }`}
+                    date.getFullYear() === currentDate.getFullYear()
+                      ? "bg-slate-900"
+                      : "bg-slate-800 opacity-60 pointer-events-none select-none"
+                  } grid `}
+                  style={{
+                    gridTemplateRows: `repeat(${timeSlots.length}, minmax(0, 1fr))`,
+                  }}
                 >
                   {timeSlots.map((slot, i) => (
                     /* Time Slots Rows */
                     <div
+                      className="border-b border-l border-gray-300 flex flex-col items-center justify-center "
                       key={`${j}-${i}`}
-                      className=" border-l border-b border-slate-700 flex flex-col items-center justify-center text-center gap-2 p-2"
                     >
-                      <div className="flex items-center gap-2 ">
-                        <button
-                          onClick={() =>
-                            handleProgressClick({
-                              status: false,
-                              date: new Date(),
-                              timeSlot: slot.time,
-                              event: slot.event,
-                            })
-                          }
-                          className="p-2 bg-red-700 rounded-full hover:bg-red-600 cursor-pointer "
-                        >
-                          <IoCloseSharp />
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleProgressClick({
-                              status: true,
-                              date: new Date(),
-                              timeSlot: slot.time,
-                              event: slot.event,
-                            })
-                          }
-                          className="p-2 bg-green-700 rounded-full hover:bg-green-600 cursor-pointer"
-                        >
-                          <IoCheckmarkSharp />
-                        </button>
-                      </div>
-                      <div className="">
-                        <button
-                          onClick={() => {
-                            setShowNotePopup(true);
-                            setNoteData({
-                              date: date,
-                              timeSlot: slot.time,
-                              event: slot.event,
-                            });
-                          }}
-                          className="flex items-center gap-2 px-2 py-1 bg-slate-700 rounded-full hover:bg-slate-600 text-sm cursor-pointer"
-                        >
-                          <IoMdAdd /> <span>Add Note</span>
-                        </button>
-                      </div>
+                      {/* 
+                      <p>{date.getDate()}</p>
+                      <p>{slot.time.start}</p>
+                      <p>{slot.time.end}</p>
+                       */}
+                      {weekData.map(
+                        (day) =>
+                          day.date.getDate() === date.getDate() &&
+                          day.date.getMonth() === date.getMonth() &&
+                          day.date.getFullYear() === date.getFullYear() &&
+                          day.timeSlots.map(
+                            (timeSlot, index) =>
+                              timeSlot.time.start === slot.time.start &&
+                              timeSlot.time.end === slot.time.end && (
+                                <div
+                                  key={index}
+                                  className="flex items-center gap-2"
+                                >
+                                  {timeSlot.status === "available" ? (
+                                    <div className="flex flex-col justify-center p-2 items-center gap-2 ">
+                                      {/* Actions */}
+                                      <div className="flex items-center gap-2 ">
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            handleProgressClick({
+                                              status: "Undone",
+                                              date: new Date(),
+                                              timeSlot: slot.time,
+                                              event: slot.event,
+                                            })
+                                          }
+                                          className="p-2 bg-red-700 rounded-full hover:bg-red-600 cursor-pointer "
+                                        >
+                                          <IoCloseSharp />
+                                        </button>
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            handleProgressClick({
+                                              status: "Done",
+                                              date: new Date(),
+                                              timeSlot: slot.time,
+                                              event: slot.event,
+                                            })
+                                          }
+                                          className="p-2 bg-green-700 rounded-full hover:bg-green-600 cursor-pointer"
+                                        >
+                                          <IoCheckmarkSharp />
+                                        </button>
+                                      </div>
+                                      {/* Note */}
+                                      {/* <div className="">
+                                        <button
+                                          onClick={() => {
+                                            setShowNotePopup(true);
+                                            setNoteData({
+                                              date: date,
+                                              timeSlot: slot.time,
+                                              event: slot.event,
+                                            });
+                                          }}
+                                          className="flex items-center gap-2 px-2 py-1 bg-slate-700 rounded-full hover:bg-slate-600 text-sm cursor-pointer"
+                                        >
+                                          <IoMdAdd /> <span>Add Note</span>
+                                        </button>
+                                      </div> */}
+                                    </div>
+                                  ) : timeSlot.status === "Done" ? (
+                                    <button
+                                      type="button"
+                                      disabled
+                                      className="p-2 bg-blue-700 rounded-full hover:bg-blue-600 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                      <FaCheck />
+                                    </button>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      disabled
+                                      className="p-2 bg-red-700 rounded-full hover:bg-red-600 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                      <IoCloseSharp />
+                                    </button>
+                                  )}
+                                </div>
+                              )
+                          )
+                      )}
                     </div>
                   ))}
                 </div>
