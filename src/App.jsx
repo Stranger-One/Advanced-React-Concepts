@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
 // import Memoization from './components/Memoization'
 
-const Memoization = React.lazy(() => import("./components/Memoization"));
-const SmartComponent = React.lazy(()=> import('./components/SmartComponent'))
-import { Suspense } from "react";
+const Memoization = React.lazy(() => import('./components/Memoization'));
+const SmartComponent = React.lazy(() => import('./components/SmartComponent'));
+import { Suspense } from 'react';
 
-import ErrorFallBack from "./components/ErrorFallBack";
-import { ErrorBoundary } from "react-error-boundary";
-import CalenderDemo from "./components/CalenderDemo";
-import RHFWithZod from "./components/RHFWithZod";
+import ErrorFallBack from './components/ErrorFallBack';
+import { ErrorBoundary } from 'react-error-boundary';
+import CalenderDemo from './components/CalenderDemo';
+import RHFWithZod from './components/RHFWithZod';
+import ReduxToolkit from './components/ReduxToolkit';
+import Zustand from './components/Zustand';
 
 const App = () => {
   return (
@@ -29,7 +31,7 @@ const App = () => {
           <Memoization />
         </Suspense>
       </ErrorBoundary> */}
-      
+
       {/* <ErrorBoundary fallbackRender={ErrorFallBack} onReset={()=>{}} >
         <Suspense
           fallback={
@@ -41,7 +43,9 @@ const App = () => {
           <SmartComponent />
         </Suspense>
       </ErrorBoundary> */}
-      <RHFWithZod />
+      {/* <RHFWithZod /> */}
+      {/* <ReduxToolkit /> */}
+      <Zustand />
     </div>
 
     // <div className="w-full min-h-screen ">
