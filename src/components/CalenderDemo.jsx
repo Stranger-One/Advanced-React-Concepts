@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { FaCheck } from "react-icons/fa";
-import { IoIosArrowBack, IoIosArrowForward, IoMdAdd } from "react-icons/io";
-import { IoCheckmarkSharp, IoClose, IoCloseSharp } from "react-icons/io5";
-import { RiFocus3Line } from "react-icons/ri";
+import React, { useEffect, useState } from 'react';
+import { FaCheck } from 'react-icons/fa';
+import { IoIosArrowBack, IoIosArrowForward, IoMdAdd } from 'react-icons/io';
+import { IoCheckmarkSharp, IoClose, IoCloseSharp } from 'react-icons/io5';
+import { RiFocus3Line } from 'react-icons/ri';
 
-const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 const timeSlots = [
   {
     time: {
-      start: "08:00 AM",
-      end: "09:00 AM",
+      start: '08:00 AM',
+      end: '09:00 AM',
     },
-    event: "Meeting with client",
+    event: 'Meeting with client',
   },
   {
     time: {
-      start: "09:00 AM",
-      end: "10:00 AM",
+      start: '09:00 AM',
+      end: '10:00 AM',
     },
-    event: "Team Standup",
+    event: 'Team Standup',
   },
   {
     time: {
-      start: "10:00 AM",
-      end: "11:00 AM",
+      start: '10:00 AM',
+      end: '11:00 AM',
     },
-    event: "Project Discussion",
+    event: 'Project Discussion',
   },
   // {
   //   time: {
@@ -74,142 +74,142 @@ const timeSlots = [
 
 const weekData = [
   {
-    date: new Date("2025-05-12"),
+    date: new Date('2025-05-12'),
     timeSlots: [
       {
-        time: { start: "08:00 AM", end: "09:00 AM" },
-        status: "Done",
-        note: "",
+        time: { start: '08:00 AM', end: '09:00 AM' },
+        status: 'Done',
+        note: '',
       },
       {
-        time: { start: "09:00 AM", end: "10:00 AM" },
-        status: "Done",
-        note: "Team sync",
+        time: { start: '09:00 AM', end: '10:00 AM' },
+        status: 'Done',
+        note: 'Team sync',
       },
       {
-        time: { start: "10:00 AM", end: "11:00 AM" },
-        status: "Undone",
-        note: "Call client",
+        time: { start: '10:00 AM', end: '11:00 AM' },
+        status: 'Undone',
+        note: 'Call client',
       },
     ],
   },
   {
-    date: new Date("2025-05-13"),
+    date: new Date('2025-05-13'),
     timeSlots: [
       {
-        time: { start: "08:00 AM", end: "09:00 AM" },
-        status: "Done",
-        note: "Morning jog",
+        time: { start: '08:00 AM', end: '09:00 AM' },
+        status: 'Done',
+        note: 'Morning jog',
       },
       {
-        time: { start: "09:00 AM", end: "10:00 AM" },
-        status: "Undone",
-        note: "",
+        time: { start: '09:00 AM', end: '10:00 AM' },
+        status: 'Undone',
+        note: '',
       },
       {
-        time: { start: "10:00 AM", end: "11:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '10:00 AM', end: '11:00 AM' },
+        status: 'available',
+        note: '',
       },
     ],
   },
   {
-    date: new Date("2025-05-14"),
+    date: new Date('2025-05-14'),
     timeSlots: [
       {
-        time: { start: "08:00 AM", end: "09:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '08:00 AM', end: '09:00 AM' },
+        status: 'available',
+        note: '',
       },
       {
-        time: { start: "09:00 AM", end: "10:00 AM" },
-        status: "available",
-        note: "Doctor visit",
+        time: { start: '09:00 AM', end: '10:00 AM' },
+        status: 'available',
+        note: 'Doctor visit',
       },
       {
-        time: { start: "10:00 AM", end: "11:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '10:00 AM', end: '11:00 AM' },
+        status: 'available',
+        note: '',
       },
     ],
   },
   {
-    date: new Date("2025-05-15"),
+    date: new Date('2025-05-15'),
     timeSlots: [
       {
-        time: { start: "08:00 AM", end: "09:00 AM" },
-        status: "available",
-        note: "Yoga session",
+        time: { start: '08:00 AM', end: '09:00 AM' },
+        status: 'available',
+        note: 'Yoga session',
       },
       {
-        time: { start: "09:00 AM", end: "10:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '09:00 AM', end: '10:00 AM' },
+        status: 'available',
+        note: '',
       },
       {
-        time: { start: "10:00 AM", end: "11:00 AM" },
-        status: "available",
-        note: "Call supplier",
+        time: { start: '10:00 AM', end: '11:00 AM' },
+        status: 'available',
+        note: 'Call supplier',
       },
     ],
   },
   {
-    date: new Date("2025-05-16"),
+    date: new Date('2025-05-16'),
     timeSlots: [
       {
-        time: { start: "08:00 AM", end: "09:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '08:00 AM', end: '09:00 AM' },
+        status: 'available',
+        note: '',
       },
       {
-        time: { start: "09:00 AM", end: "10:00 AM" },
-        status: "available",
-        note: "Daily report",
+        time: { start: '09:00 AM', end: '10:00 AM' },
+        status: 'available',
+        note: 'Daily report',
       },
       {
-        time: { start: "10:00 AM", end: "11:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '10:00 AM', end: '11:00 AM' },
+        status: 'available',
+        note: '',
       },
     ],
   },
   {
-    date: new Date("2025-05-17"),
+    date: new Date('2025-05-17'),
     timeSlots: [
       {
-        time: { start: "08:00 AM", end: "09:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '08:00 AM', end: '09:00 AM' },
+        status: 'available',
+        note: '',
       },
       {
-        time: { start: "09:00 AM", end: "10:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '09:00 AM', end: '10:00 AM' },
+        status: 'available',
+        note: '',
       },
       {
-        time: { start: "10:00 AM", end: "11:00 AM" },
-        status: "available",
-        note: "Meeting with team",
+        time: { start: '10:00 AM', end: '11:00 AM' },
+        status: 'available',
+        note: 'Meeting with team',
       },
     ],
   },
   {
-    date: new Date("2025-05-18"),
+    date: new Date('2025-05-18'),
     timeSlots: [
       {
-        time: { start: "08:00 AM", end: "09:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '08:00 AM', end: '09:00 AM' },
+        status: 'available',
+        note: '',
       },
       {
-        time: { start: "09:00 AM", end: "10:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '09:00 AM', end: '10:00 AM' },
+        status: 'available',
+        note: '',
       },
       {
-        time: { start: "10:00 AM", end: "11:00 AM" },
-        status: "available",
-        note: "",
+        time: { start: '10:00 AM', end: '11:00 AM' },
+        status: 'available',
+        note: '',
       },
     ],
   },
@@ -217,10 +217,10 @@ const weekData = [
 
 // Note Popup Component
 const NotePopup = ({ data }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   const handleNoteSave = () => {
-    console.log("Note saved", { ...data, message });
+    console.log('Note saved', { ...data, message });
     setShowNotePopup(false);
   };
   const handleNoteCancel = () => {
@@ -314,9 +314,9 @@ const CalenderDemo = () => {
   };
 
   const weekDates = getWeekDates(currentWeekStart);
-  const monthYear = currentWeekStart.toLocaleString("default", {
-    month: "long",
-    year: "numeric",
+  const monthYear = currentWeekStart.toLocaleString('default', {
+    month: 'long',
+    year: 'numeric',
   });
 
   // Get the previous days of the week
@@ -330,10 +330,9 @@ const CalenderDemo = () => {
 
   const prevDays = getPrevDaysOfWeek();
 
-
   // Done/Undone button click handler
   const handleProgressClick = (data) => {
-    console.log("Progress clicked", data);
+    console.log('Progress clicked', data);
   };
 
   return (
@@ -359,8 +358,8 @@ const CalenderDemo = () => {
                     date.getMonth() === currentDate.getMonth() &&
                     date.getFullYear() === currentDate.getFullYear()
                 )
-                  ? "bg-slate-700 opacity-60 pointer-events-none select-none"
-                  : "bg-slate-500"
+                  ? 'bg-slate-700 opacity-60 pointer-events-none select-none'
+                  : 'bg-slate-500'
               }`}
             >
               <RiFocus3Line />
@@ -412,8 +411,8 @@ const CalenderDemo = () => {
                       date.getMonth() === currentDate.getMonth() &&
                       date.getDate() === currentDate.getDate() &&
                       date.getFullYear() === currentDate.getFullYear()
-                        ? "bg-slate-500 text-white"
-                        : "text-slate-300"
+                        ? 'bg-slate-500 text-white'
+                        : 'text-slate-300'
                     }`}
                   >
                     {date.getDate()}
@@ -452,8 +451,8 @@ const CalenderDemo = () => {
                     date.getMonth() === currentDate.getMonth() &&
                     date.getDate() === currentDate.getDate() &&
                     date.getFullYear() === currentDate.getFullYear()
-                      ? "bg-slate-900"
-                      : "bg-slate-800 opacity-60 pointer-events-none select-none"
+                      ? 'bg-slate-900'
+                      : 'bg-slate-800 opacity-60 pointer-events-none select-none'
                   } grid `}
                   style={{
                     gridTemplateRows: `repeat(${timeSlots.length}, minmax(0, 1fr))`,
@@ -483,7 +482,7 @@ const CalenderDemo = () => {
                                   key={index}
                                   className="flex items-center gap-2"
                                 >
-                                  {timeSlot.status === "available" ? (
+                                  {timeSlot.status === 'available' ? (
                                     <div className="flex flex-col justify-center p-2 items-center gap-2 ">
                                       {/* Actions */}
                                       <div className="flex items-center gap-2 ">
@@ -491,7 +490,7 @@ const CalenderDemo = () => {
                                           type="button"
                                           onClick={() =>
                                             handleProgressClick({
-                                              status: "Undone",
+                                              status: 'Undone',
                                               date: new Date(),
                                               timeSlot: slot.time,
                                               event: slot.event,
@@ -505,7 +504,7 @@ const CalenderDemo = () => {
                                           type="button"
                                           onClick={() =>
                                             handleProgressClick({
-                                              status: "Done",
+                                              status: 'Done',
                                               date: new Date(),
                                               timeSlot: slot.time,
                                               event: slot.event,
@@ -533,7 +532,7 @@ const CalenderDemo = () => {
                                         </button>
                                       </div> */}
                                     </div>
-                                  ) : timeSlot.status === "Done" ? (
+                                  ) : timeSlot.status === 'Done' ? (
                                     <button
                                       type="button"
                                       disabled

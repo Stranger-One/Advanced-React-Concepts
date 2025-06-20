@@ -1,10 +1,10 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 const loginSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters long"),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters long'),
 });
 
 const RHFWithZod = () => {
@@ -18,11 +18,14 @@ const RHFWithZod = () => {
 
   const onSubmit = (data) => {
     // Handle form submission
-    console.log("Form Data:", data);
+    console.log('Form Data:', data);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="px-10 py-8 max-w-md mx-auto bg-gray-200 shadow-md rounded">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="px-10 py-8 max-w-md mx-auto bg-gray-200 shadow-md rounded"
+    >
       <h2 className="text-2xl font-bold mb-6 text-center">
         React Hook Form Example
       </h2>
@@ -37,7 +40,7 @@ const RHFWithZod = () => {
         <input
           type="email"
           id="email"
-          {...register("email", { required: "Email is required" })}
+          {...register('email', { required: 'Email is required' })}
           placeholder="Enter your email"
           className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
@@ -55,7 +58,7 @@ const RHFWithZod = () => {
         <input
           type="password"
           id="password"
-          {...register("password", { required: "Password is required" })}
+          {...register('password', { required: 'Password is required' })}
           placeholder="Enter your password"
           className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
         />

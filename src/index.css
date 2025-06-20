@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Remove the space between pseudo-elements and colons */
 .custom-scrollbar::-webkit-scrollbar {

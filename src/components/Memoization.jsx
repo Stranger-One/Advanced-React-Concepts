@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
-import reactLogo from "../assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useMemo, useState } from 'react';
+import reactLogo from '../assets/react.svg';
+import viteLogo from '/vite.svg';
 
 const nums = new Array(10_000).fill(0).map((_, i) => {
   return {
@@ -29,27 +29,30 @@ function Memoization() {
     [number]
   );
 
-  if(Math.random() > 0.6) {
-    throw new Error("Random Error Occurred");
-}
+  if (Math.random() > 0.6) {
+    throw new Error('Random Error Occurred');
+  }
 
   return (
     <div className="wfull h-[50vh] flex flex-col items-center justify-center bg-gray-200 text-lg">
-      
       <h1 className="text-xl font-bold mb-5">Memoization + Lazy Loading...</h1>
       <h2>Magical Number: {magical?.index}</h2>
       <div className="card">
-        <button onClick={() => {
-          setCount((count) => count + 1)
-          if(count == 10 ) {
-            setNumber(new Array(20_000).fill(0).map((_, i) => {
-              return {
-                index: i,
-                isMagical: i === 18_000,
-              };
-            }))
-          }
-        }}>
+        <button
+          onClick={() => {
+            setCount((count) => count + 1);
+            if (count == 10) {
+              setNumber(
+                new Array(20_000).fill(0).map((_, i) => {
+                  return {
+                    index: i,
+                    isMagical: i === 18_000,
+                  };
+                })
+              );
+            }
+          }}
+        >
           count is {count}
         </button>
       </div>
